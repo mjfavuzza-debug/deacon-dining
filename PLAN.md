@@ -14,9 +14,15 @@ Written Nov 16, 2026. Each step is small enough to hand to Claude Code with a sm
 Claude could see the `deacon-dining` repository but was not allowed to push to it. Pick one:
 
 - Install the Claude GitHub App on the repository at https://github.com/apps/claude/installations/select_target, then ask Claude to push.
-- Or upload by hand: on github.com open the repository, choose "uploading an existing file", and drag in everything from this folder. The `.github` folder must be included, so turn on hidden files in File Explorer first.
+- Or upload by hand: on github.com open the repository, choose "uploading an existing file", and drag in the `docs`, `scraper`, `tests` and `setup` folders plus `README.md` and `PLAN.md`.
 
 Prompt: "Push everything in this folder to the main branch of mjfavuzza-debug/deacon-dining."
+
+Then add the daily schedule. Claude was not allowed to save this one file into the folder, so its text is in `setup/daily-menu-schedule.yml.txt`:
+
+1. On GitHub open the repository, click "Add file", "Create new file".
+2. Name it exactly `.github/workflows/menus.yml` (typing the slashes creates the folders).
+3. Paste in everything from `setup/daily-menu-schedule.yml.txt` and click "Commit changes".
 
 ## Step 2: turn on the public link (needs Marco, two minutes)
 

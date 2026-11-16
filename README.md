@@ -22,7 +22,7 @@ Double-click `docs/index.html`. It opens in your browser and works offline with 
 | Places | `scraper/locations.js`, `scraper/chains.js` | The list of places, and the Chick-fil-A numbers |
 | Brain | `docs/engine.js` | Hours, plate building, tracking, chat actions, the AI prompt |
 | Page | `docs/index.html`, `docs/app.js`, `docs/style.css` | What you see, plus the calls to Gemini or Claude |
-| Schedule | `.github/workflows/menus.yml` | Has GitHub run the collector every morning |
+| Schedule | `setup/daily-menu-schedule.yml.txt` | Goes on GitHub as `.github/workflows/menus.yml` so GitHub runs the collector every morning (see PLAN.md step 1) |
 | Tests | `tests/test.js`, `tests/page-test.js` | Checks that everything still works |
 
 ## Updating the menu yourself
