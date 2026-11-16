@@ -1,0 +1,24 @@
+name: Collect today's menus
+on:
+  schedule:
+    - cron: '17 9 * * *'    # about 4:17 or 5:17 am Eastern, every day
+    - cron: '17 14 * * *'   # second try mid-morning in case the first one was early
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scraper/collect.js
+      - name: Save the new menu
+        run: |
+          git config user.name "menu-collector"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/menu.json docs/menu-data.js
+          git diff --cached --quiet || git commit -m "Menus for $(TZ=America/New_York date +%F)"
+          git push

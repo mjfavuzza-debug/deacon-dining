@@ -1,0 +1,394 @@
+Roasted Leg of Lamb|1 serving|580|33|0|48|g|
+Savory Rice Pilaf|0.5 cup|160|3|30|2.5|V,v,g|
+Ginger Honey Glazed Carrots|0.5 cup|130|0.9|23|4|v,g|Milk
+Sauteed Zucchini & Tomato|0.5 cup|45|1|5|2.5|V,v,g|
+Kale with Caramelized Onions|0.5 cup|45|2|6|2|V,v,g|
+Rotisserie-Style Chicken|2 piece|600|71|2|32|g|
+Honey Lemon Roasted Potatoes|0.5 cup|100|2|20|1|v,g|
+Sautéed Mushrooms & Brussel Sprouts|0.5 cup|80|3|7|5|V,v,g|
+Roasted Broccoli & Carrots|0.5 cup|70|1|7|4|V,v,g|
+Marinara Sauce|1 floz|25|0|2|2|V,v,g|
+Red Lentil Penne|0.5 cup|130|9|23|1|V,v,g|
+Pesto Primavera|1 serving|280|5|47|8|V,v,g|
+Ginger Soy Tofu|3 oz|90|9|4|4.5|V,v,g|Soy
+Bao Bun|2 each|400|12|99|5|V,v|Wheat, Soy
+Sauteed Kale & Garlic|0.5 cup|50|3|4|3|V,v,g|
+Stir-Fry Vegetables|0.5 cup|60|2|6|2.5|V,v,g|
+Pickled Carrot & Daikon|0.5 cup|20|0.5|4|0|V,v,g|
+Vegan Sriracha Mayo|1 floz|150|0|2|15|V,v,g|
+Sliced Cucumber|0.5 cup|10|0|2|0|V,v,g|
+Scallions|1 tbsp|0|0|0|0|V,v,g|
+Fresh Sliced Jalapenos|1 oz|10|0|2|0|V,v,g|
+Pickled Red Onions|1 oz|15|0|3|0|V,v,g|
+Veggie Burger Patty||170|5|21|9|V,v,g,cool_foods|Soy
+Hamburger Bun|1 each|160|6|30|1|V,v|Wheat, Sesame
+Leaf Lettuce|1 leaf|0|0|0.6|0|V,v,g|
+Sliced Red Onions|1 oz|15|0|3|0|V,v,g|
+Spicy Pickles|0.25 cup|15|0|2|0|V,v,g|
+Sliced Tomatoes|2 slice|10|0|2|0|V,v,g|
+Power Greens Mix|0.5 cup|10|0|2|0|V,v,g|
+Farro "Risotto"|0.5 cup|150|4|20|4.5|v|Wheat, Milk
+Roasted Sweet Potatoes|0.5 cup|130|2|27|2|V,v,g|
+Cheese Grits|0.5 cup|150|6|16|6|v|Milk
+London Broil Steak|3 oz|170|22|0|8|g|
+Sauteed Peppers and Onions|0.25 cup|30|0.6|5|1|V,v,g|
+Southern Cornbread|1 piece|230|5|41|5||Wheat, Eggs, Milk, Soy
+Southwest Tofu Scramble|4 oz|160|9|7|11|V,v,g,cool_foods|Soy
+Parmesan Peppercorn Hash Browns|0.5 cup|340|20|24|18|v,g|Milk
+Red Eye Gravy|4 floz|110|6|6|7||Wheat, Milk
+Fried Egg|1 each|100|6|0|7|v,g|Eggs
+Scrambled Just Egg®|0.5 cup|200|13|2|16|V,v,g,cool_foods|
+Caramelized Onions|1 tbsp|25|0|2|2|V,v,g|
+Pico de Gallo|2 tbsp|10|0|1|0|V,v,g|
+Southern Tomato Jam|1 floz|60|0.8|15|1|g|Fish, Soy
+Avocado|0.25 cup|120|2|4|11|V,v,g|
+Shredded Cheddar Cheese|0.25 cup|120|6|0.9|9|v,g|Milk
+Red Pepper Pimento Cheese|1 oz|150|5|1|13|v,g|Eggs, Milk
+Roasted Brussels Sprouts|0.5 cup|90|4|9|5|V,v,g|
+Charred Scallion Crema|2 tbsp|40|2|2|3|v,g|Milk
+Candied Bacon|1 serving|540|14|8|50|pork,g|
+Chipotle Ketchup|1 floz|35|0|7|0|V,v,g|
+Honey Mustard Dressing|2 tbsp|120|0|8|9|v,g|Eggs
+Apple Butter|2 tbsp|90|0|23|0|V,v,g|
+Cheeseburger|1 each|340|23|2|26||Wheat, Milk, Sesame
+Beer Battered Cod|1 each|230|21|6|12||Wheat, Fish
+Fresh Cut Fries|4.5 oz|320|3|32|20|V,v,g|
+Beyond Burger Patty|1 patty|240|20|7|14|V,v,g|
+Turkey Burger Patty|1 patty|230|17|2|12|g|
+Sauteed Mushrooms & Onions|0.5 cup|100|4|10|5|V,v,g|
+Baby Spinach|1 cup|15|2|1|0|V,v,g|
+Sliced Red Onions|0.5 oz|10|0|1|0|V,v,g|
+Chipotle Mayonnaise|1 floz|210|0|1|23|v,g|Eggs
+Old-Fashioned Coleslaw|0.5 cup|160|0.8|6|15|v,g|Eggs
+Spicy Brown Mustard|1 tsp|5|0|0|0|V,v,g|
+Pesto Mayonnaise|1 floz|180|0.8|0.9|19|v,g|Eggs, Milk
+1000 Island Dressing|1 floz|80|0|6|5|v,g|Eggs
+Sriracha Ketchup|1 floz|35|0|7|0|V,v,g|
+Avocado Ranch Dressing|1 floz|130|1|2|13|v,g|Eggs, Milk
+Dill Pickle Slices|1 oz|0|0|0|0|V,v,g|
+Pickled Red Onion|0.25 cup|20|0|5|0|V,v,g|
+Banana Peppers|0.25 cup|15|0|2|0|V,v,g|
+Kimchi|0.25 cup|20|0|6|0|V,v,g|
+Pickled Red Cabbage|1 oz|10|0|2|0|V,v,g|
+Sliced Jalapeno Peppers|0.25 cup|15|0|2|0|V,v,g|
+Creamy Tomato Basil Soup|6 floz|150|3|13|9|v,g|Milk
+Chicken Noodle Soup|6 floz|90|5|9|3||Wheat, Eggs
+Cheese Pizza|1 slice|240|14|32|82|v|Wheat, Milk
+Pepperoni Pizza|1 slice|270|15|32|84|pork|Wheat, Milk
+Antipasta Pizza|1 slice|280|15|33|85|pork|Wheat, Milk
+BBQ Chicken Pizza|1 slice|280|17|35|83||Wheat, Milk
+Breadsticks|1 each|140|5|25|0.5|V,v|Wheat
+Alfredo Sauce|1 floz|120|8|2|8|v,g|Milk
+Seasoned Cauliflower Pizza Crust|1 crust|470|14|75|12|v,g|Eggs, Milk, Soy
+Baked Penne Marinara & Cheese|1 serving|330|16|32|105|v|Wheat, Milk
+Caesar Salad|0.5 cup|270|17|8|19|v|Wheat, Eggs, Milk
+Whole Grain Penne|0.5 cup|90|4|19|0.5|V,v|Wheat
+Linguine|0.5 cup|120|4|24|0|V,v|Wheat
+Cavatappi Pasta|0.5 cup|100|4|21|0|V,v|Wheat
+Broccoli Florets|0.5 cup|15|0.9|2|0|V,v,g|
+Green Peas|0.25 cup|40|2|6|0|V,v,g|
+Diced Yellow Onion|1 oz|15|0|3|0|V,v,g|
+Roasted Red Peppers|0.5 cup|30|0.7|5|0|V,v,g|
+Artichoke Hearts|0.5 cup|130|3|23|0|V,v,g|
+Sun-Dried Tomatoes|1 serving|35|2|0|0|V,v,g|
+Diced Mixed Bell Peppers|0.25 cup|10|0|2|0|V,v,g|
+Diced Tomatoes|1 floz|0|0|0.8|0|V,v,g|
+Sliced Mushrooms|0.25 cup|0|0.5|0.7|0|V,v,g|
+Sliced Black Olives|2 tbsp|20|0|0.9|1.5|V,v,g|
+Shredded Parmesan Cheese|2 tbsp|220|20|2|14|v,g|Milk
+Diced Chicken|3.75 oz|190|27|0|8|g|
+Crumbled Sausage|2 oz|200|8|2|18|pork,g|
+Diced Tofu|3 oz|80|8|1|4|V,v,g|Soy
+Pepperoni|1 oz|110|6|0|8|pork,g|
+Mussels|3 each|50|7|2|1|g|Shellfish
+Diced Ham|1 oz|35|5|2|1|pork,g|
+Edamame|0.5 cup|100|10|8|4.5|V,v,g|Soy
+Garbanzo Beans|0.5 cup|90|4|14|1|V,v,g|
+Vodka Sauce|4 floz|100|2|8|6|v,g|Milk
+Cheese Sauce|1 floz|50|3|2|3|v,g|Milk
+Basil Pesto Sauce|1 floz|160|5|4|15|v,g|Milk
+Butter|1 tbsp|110|0|0|12|v,g|Milk
+Minced Garlic|2 tsp|15|0.7|3|0|V,v,g|
+Scrambled Eggs|1 egg|80|6|0|5|v,g|Eggs
+Egg Whites|0.5 cup|100|20|4|0|v,g|Eggs
+Chorizo|0.5 cup|120|10|6|8|V,v,g,cool_foods|Soy
+Fire-Roasted Salsa|1 floz|10|0|2|0|V,v,g|
+Feta Cheese Crumbles|2 tbsp|90|5|1|6|v,g|Milk
+Fried Potatoes|0.5 cup|180|2|18|11|V,v,g|
+Nonfat Plain Greek Yogurt|0.5 cup|60|11|5|0|v,g|Milk
+Vanilla Yogurt|1 cup|220|8|27|8|v,g|Milk
+Strawberry Yogurt|1 cup|220|8|27|8|v,g|Milk
+Honey|1 tbsp|70|0|17|0|v,g|
+Diced Mango|1 oz|20|0|4|0|V,v,g|
+Blueberries|3 oz|45|0.6|10|0|V,v,g|
+Strawberries|2 oz|20|0|5|0|V,v,g|
+Blueberries|0.25 cup|20|0|5|0|V,v,g|
+Raspberries|0.25 cup|20|0|4|0|V,v,g|
+Strawberries|0.5 cup|25|0|6|0|V,v,g|
+Blackberries|0.25 cup|15|0.6|3|0|V,v,g|
+Pineapple|0.25 cup|25|0|6|0|V,v,g|
+Red & Green Grapes|0.5 cup|60|0.6|15|0|V,v,g|
+Cantaloupe|0.5 cup|30|0.6|6|0|V,v,g|
+Honeydew Melon|0.5 cup|35|0|8|0|V,v,g|
+Red Grapefruit|1 serving|50|0.9|12|0|V,v,g|
+Field Greens|2 oz|10|0.5|2|0|V,v,g|
+Romaine Lettuce|1 cup|15|0.6|2|0|V,v,g|
+Grape Tomatoes|0.5 cup|15|0.6|3|0|V,v,g|
+Shredded Carrots|0.25 cup|15|0|3|0|V,v,g|
+Sliced Bell Peppers|1 oz|10|0|2|0|V,v,g|
+Cauliflower Florets|0.5 cup|30|2|5|0|V,v,g|
+Red Cabbage|1 oz|10|0|2|0|V,v,g|
+Sliced Radishes|1 oz|0|0|1|0|V,v,g|
+Pepperoncini|1 oz|10|0|2|0|V,v,g|
+Edamame|0.5 cup|100|10|8|4.5|V,v,g|Soy
+Greek Couscous Salad|0.5 cup|170|3|18|10|V,v|Wheat
+Balsamic Marinated Grape Tomatoes|0.5 cup|70|0.8|5|5|V,v,g|
+Cucumber & Onion Salad|0.5 cup|150|0.6|10|12|V,v,g|
+Cottage Cheese|0.5 cup|45|7|3|0.5|v,g|Milk
+Roasted Beets|0.5 cup|60|2|11|0|V,v,g|
+Caesar Dressing|1 floz|170|4|4|16|v,g|Eggs, Milk
+Ranch Dressing|1 floz|160|0.8|2|17|v,g|Eggs, Milk
+Balsamic Vinaigrette|1 floz|180|0|3|18|V,v,g|
+Honey Berry Vinaigrette|2 tbsp|90|0|7|7|v,g|
+Vegan Green Goddess with Arugula Dressing|1 serving|160|0|8|17|V,v,g|
+Catalina Dressing|1 floz|150|0|6|14|g|Fish, Soy
+Ginger Miso Dressing|1 floz|120|1|2|11|V,v,g|Soy, Sesame
+Pickle-Brined Grilled Chicken Breast|4 oz|180|32|0|4|g|
+Flaked Salmon|3 oz|140|17|0|6|g|Fish
+Crispy Bacon Pieces|2 tbsp|70|5|0|5|pork,g|
+Black Beans|0.25 cup|60|4|11|0|V,v,g|
+Fresh Mozzarella|1 oz|80|5|1|5|v,g|Milk
+Chopped Hard-Cooked Egg|0.25 cup|70|5|0|4.5|v,g|Eggs
+Chilled Quinoa|0.5 cup|130|5|23|2|V,v,g|
+Bulgur Wheat|0.5 cup|130|5|28|0|V,v|Wheat
+Brown Rice|0.5 cup|110|3|23|1|V,v,g|
+Kalamata Olives|1 oz|70|0|0|8|V,v,g|
+Sweety Drop Peppers|1 oz|25|0|6|0|V,v,g|
+Tomato Chickpea Salad|0.5 cup|100|2|11|6|V,v,g,cool_foods|
+Marinated Artichoke Hearts|0.5 cup|180|2|25|9|V,v,g|
+Wakame Seaweed Salad|1 oz|10|0.6|2|0|cool_foods|Sesame
+Cornichons|1 oz|0|0|0.5|0|V,v,g|
+Housemade Cinnamon-Honey Granola|0.25 cup|110|2|20|3|v,g|Milk
+French Fried Onions|2 tbsp|60|0|5|4|V,v|Wheat
+Seasoned Croutons|0.25 cup|60|2|10|2|v|Wheat, Milk
+Goldfish Crackers|1 oz|140|3|19|5|v|Wheat, Milk
+Sunflower Kernels|2 tbsp|110|3|3|9|V,v,g|
+Pumpkin Seeds|2 tbsp|130|5|15|5|V,v,g|
+Flax Seed|1 tbsp|60|2|4|4|V,v,g|
+Dried Cranberries|0.25 cup|160|0|40|0|V,v,g|
+Sliced Turkey Breast|3 oz|100|18|0|1|g|
+Virginia Ham|3 oz|110|16|1|3.5|pork,g|
+Sliced Roast Beef|3 oz|100|17|3|2|g|
+Sliced Pork Salami|3 slice|100|6|1|9|pork,g|
+American Cheese|1 slice|50|3|1|3.5|v,g|Milk
+Sliced Cheddar Cheese|1 slice|60|3|0|4.5|v,g|Milk
+Sliced Pepperjack Cheese|1 slice|80|5|1|6|v,g|Milk
+Sliced Provolone Cheese|1 slice|50|4|0|3.5|v,g|Milk
+Sliced Smoked Gouda Cheese|1 oz|110|7|0|8|v,g|Milk
+Sliced Swiss Cheese|1 slice|60|4|0|4|v,g|Milk
+Mayonnaise|1 tbsp|100|0|0|11|v,g|Eggs
+Signature Chips|1.5 oz|160|1|14|11|V,v,g|
+White Bread|1 slice|100|4|19|1||Wheat, Soy
+Wheat Bread Slice|1 slice|80|2|14|1|v|Wheat, Soy
+Multigrain Bread Slice|1 slice|110|4|20|1.5|v|Wheat, Soy, Sesame
+Rye Bread Slice|1 slice|110|4|21|1|v|Wheat, Soy
+Tomato Basil Wrap|1 each|310|8|52|6|V,v|Wheat
+Wheat Wrap|1 each|290|9|49|7|V,v|Wheat
+Spinach Wrap|1 each|310|8|52|7|V,v|Wheat
+Plain Bagels||300|10|59|0|V,v|Wheat
+Sesame Bagel|1 each|290|10|59|0|V,v|Wheat, Sesame
+Wheat Bagel||150|5|32|0.5|V,v|Wheat
+Cinnamon Raisin Bagels||290|9|60|0|V,v|Wheat
+Blueberry Bagels||300|9|61|0|V,v|Wheat, Soy
+Everything Bagels|1 each|300|10|59|0|V,v|Wheat, Sesame
+Orange Marmalade|1 tbsp|50|0|13|0|g|
+Strawberry Preserves|1 tbsp|50|0|13|0|V,v,g|
+Raspberry Preserves|1 tbsp|50|0|13|0|V,v,g|
+Whipped Cream Cheese|1 oz|100|2|2|9|v,g|Milk
+Sun Butter|1 tbsp|100|3|3|7|V,v,g|
+Brown Butter Chocolate Chip Cookie|1 serving|120|2|16|6|v|Wheat, Eggs, Milk, Soy
+2% Milk|8 floz|120|8|12|4.5|v,g|Milk
+Whole Milk|8 floz|150|8|12|8|v,g|Milk
+Chocolate Milk|8 floz|180|11|28|2.5|v,g|Milk
+Apple Juice|8 floz|110|0|26|0|V,v,g|
+Cranberry Juice|8 floz|120|0|29|0|V,v,g|
+Orange Juice|8 floz|120|2|28|0|V,v,g|
+Pineapple Juice|8 floz|130|0|31|0|V,v,g|
+Deacon Brew|8 floz|0|0|0|0|V,v,g|
+Tractor Beverage Unsweet Tea|12 floz|0|0|1|0|V,v,g|
+Tractor Beverage Farmer's Punch|12 floz|130|0|29|0|V,v,g|
+Tractor Beverage Strawberry Dragonfruit|12 floz|15|0|3|0|V,v,g|
+Tractor Beverage Mandarin Cardamom|12 floz|140|0|30|0|V,v,g|
+Rice Chex Cereal|1 cup|160|3|35|1|v,g|
+Original Cheerios|1 cup|100|3|19|2|V,v,g|
+Lucky Charms Cereal|1 cup|140|3|30|1|g|
+Froot Loops Cereal|1 cup|120|2|26|1||Wheat
+Apple Jacks Cereal|1 cup|120|2|26|1||Wheat
+Cinnamon Toast Crunch Cereal|1 cup|170|2|33|4|V,v|Wheat, Soy
+Cocoa Puffs|1 cup|140|2|31|2|v|
+Raisin Bran Cereal|1 cup|190|5|47|1||Wheat
+Pineapple Soft Serve|0.67 cup|110|0|26|1|V,v,g|
+Vanilla Ice Cream|0.5 cup|140|3|20|6|v,g|Milk
+Chocolate Ice Cream|0.5 cup|150|3|20|5|v,g|Milk
+Vanilla Frozen Yogurt|0.5 cup|130|3|27|0|v,g|Milk
+Chocolate Frozen Yogurt|0.5 cup|140|3|29|2|v,g|Milk
+Waffles|1 serving|130|3|28|1|v|Wheat, Milk
+Pancake & Waffle Syrup|1 floz|100|0|26|0|V,v,g|
+Baked BBQ Chicken|2 piece|660|71|19|32|g|
+Baked Sweet Potato|1 each|150|3|34|0|V,v,g|
+Summer Vegetable Blend|0.5 cup|70|0.9|4|6|V,v,g|
+Buttered Corn on the Cob|1 half ear|90|2|18|2|v,g|Milk
+Smoked BBQ Tofu|3 oz|80|9|2|4.5|V,v,g|Soy
+Sauteed Chicken Teriyaki|0.5 cup|230|22|11|11|g|Soy
+Jasmine Rice|0.5 cup|140|3|29|0|V,v,g|
+Kimchi Fried Rice|0.5 cup|120|1|16|5|V,v,g|
+Garlic Ginger Sesame Broccoli|0.5 cup|80|3|9|4|V,v,g|Sesame
+Sesame Roasted Mushrooms|0.5 cup|80|4|6|5|V,v,g|Soy, Sesame
+Soy Egg|1 each|90|7|1|5|v,g|Eggs, Soy
+Spicy Cucumber Salad|0.5 cup|25|0|5|0|V,v,g|Soy, Sesame
+Korean-Style Red Cabbage Slaw|1.7 oz|30|0|5|1|V,v,g|Soy, Sesame
+Pickled Ginger|1 oz|0|0|0|0|V,v,g|
+Diced Cucumber|3 oz|15|0.5|3|0|V,v,g|
+Gochujang|1 tbsp|20|0|2|0.5|V,v,g|Soy, Sesame
+Fresh Cilantro|1 tbsp|0|0|0|0|V,v,g|
+Yum Yum Sauce|2 tbsp|180|0.7|5|17|v,g|Eggs
+Sriracha Mayonnaise|1 floz|35|0|0|4|v,g|Eggs
+Garlic Chili Oil|1 floz|260|0|0.9|28|V,v,g|
+Ginger Teriyaki Sauce|1 floz|60|0.8|16|0|v,g|Soy
+Peanuts|2 tbsp|180|7|6|15|V,v,g|Peanuts
+Nori Sheets|1 serving|10|1|2|0||
+Pasta Primavera|1 cup|510|20|99|5|v|Wheat, Milk
+Pork Tonkatsu|4 oz|350|29|19|17|pork|Wheat, Eggs, Milk
+Hoagie Roll|1 each|170|6|34|1.5||Wheat, Soy
+Asian Slaw|0.5 cup|25|0.7|5|0|V,v,g|
+Soy Pickled Cucumbers|1 oz|20|0.9|4|0|V,v,g|Soy
+Hoisin-Lime Sauce|1 floz|80|0.8|17|1|V,v|Wheat, Soy, Sesame
+Black Bean Gardenburger|1 each|120|11|16|3|V,v|Wheat, Soy
+Egg Whites|3 tbsp|25|5|0|0|v,g|Eggs
+Diced Red Onions|2 tbsp|10|0|1|0|V,v,g|
+Cajun Pasta Salad|0.5 cup|230|5|26|12||Wheat, Eggs, Fish, Milk, Soy
+Caprese Salad|1 serving|280|6|5|26|v,g|Milk
+Pepperoni Flatbread||750|39|66|36|pork|Wheat, Milk
+Curry Chicken Salad Wrap|1 whole wrap|510|32|43|24||Wheat, Eggs, Milk
+Cheese Quesadilla|1 each|460|23|34|27|v|Wheat, Milk
+Salsa Roja|1 floz|10|0|2|0|V,v,g|
+Sour Cream|2 tbsp|70|1|2|6|v,g|Milk
+Fresh Fruit Salad|0.5 cup|40|0|9|0|V,v,g|
+Lemon Garlic Chicken Soup|8 floz|150|13|21|7|g|Eggs
+Spicy Carrot Ginger Dressing|1 floz|100|0|2|10|v,g|Soy, Sesame
+Ginger Miso Dressing|1 floz|120|1|2|11|V,v,g|Soy, Sesame
+Roasted Brussels Sprouts|0.5 cup|50|3|7|1.5|V,v,g|
+Mandarin Oranges|0.5 cup|100|0.6|23|0|V,v,g|
+Chilled Quinoa|0.5 cup|130|5|23|2|V,v,g|
+Granola|0.25 cup|130|2|20|4.5|v|Soy
+Udi's Soft White Sandwich Bread|1 slice|150|2|24|5|v,g|Eggs
+Nutella®|2 tbsp|200|2|22|11|v,g|Tree Nuts, Milk, Soy
+Creamy Peanut Butter|2 tbsp|170|6|7|14|V,v,g|Peanuts
+Whipped Cream Cheese|2 tbsp|60|1|2|4.5|v,g|Milk
+Lox Cream Cheese|1 oz|90|3|2|8|g|Fish, Milk
+Jalapeno Cheddar Cream Cheese|2 tbsp|100|3|2|9|v,g|Milk
+Tractor Beverage Berry Patch|12 floz|15|0|3|0|V,v,g|
+Brewed Coffee|8 floz|0|0|0|0|V,v,g|
+Apples|1 serving|90|0|21|0|V,v,g|
+Bananas|1 each|100|0.7|23|0|V,v,g|
+Zick's Classic Cheese Pizza|1 slice|250|13|32|8|v|Wheat, Milk
+Zick's Classic Pepperoni Pizza|1 slice|310|15|32|13|pork|Wheat, Milk
+The Big Dill Flatbread|1 each|810|28|69|48|pork|Wheat, Eggs, Milk
+Thai-Tanic Flatbread|1 each|830|29|113|31||Wheat, Tree Nuts, Milk
+Kitchen Sink Flatbread|1 each|1240|46|118|69|pork|Wheat, Eggs, Milk
+Couch Tomato Flatbread|1 each|870|38|67|48|v|Wheat, Milk
+Ken & Barbie Flatbread|1 each|970|40|87|54||Wheat, Eggs, Milk
+Come Meat Zick Flatbread|1 each|1040|45|73|64|pork|Wheat, Milk
+Margaritaville Flatbread|1 each|810|33|69|45|v|Wheat, Milk
+Oval Flatbread|1 each|370|12|60|9|v|Wheat, Milk
+Individual Pizza Crust||550|24|101|3.5||Wheat, Soy
+Pizza Crust Vegan & Made Without Gluten|1 each|440|3|93|4.5||
+Zick's Classic Red Sauce|2 floz|40|0.8|4|2.5|V,v,g|
+Zick's White Sauce|0.5 cup|270|6|8|23||Milk
+Garlic Herb Oil|1 floz|240|0|0|25|V,v,g|
+BBQ Sauce|2 oz|140|0.7|36|0|V,v,g|
+Pesto Sauce|1 floz|100|2|1|9|v,g|Milk
+Grated Parmesan Cheese|2 tbsp|60|6|0|4|v,g|Milk
+Shredded Vegan Mozzarella|1 oz|80|0|6|5|V,v,g|
+Shredded Mozzarella Cheese|1 oz|90|7|2|5|v,g|Milk
+Sliced Mozzarella Cheese|2 oz|150|10|2|10|v,g|Milk
+Sliced Basil|1 tbsp|0|0|0|0|V,v,g|
+Roasted garlic|1 tbsp|45|1|6|1|V,v,g|
+Sliced Green Peppers|1 oz|10|0|1|0|V,v,g|
+Crispy Bacon Bits|2 tbsp|70|3|0|6|pork,g|
+Grilled Chicken Breast Strips|3 oz|120|19|2|3.5|g|
+Meatballs|3 each|210|14|5|16||Wheat, Eggs, Soy
+Pepperoni|1 serving|150|6|0|13|pork,g|
+Zick's Mozzarella Sticks||700|21|54|43|v|Wheat, Milk
+Zick's Garlic Knots|5 each|660|24|63|36|v|Wheat, Milk
+Totchos||900|29|34|73||Eggs, Milk
+Chocolate Chip Cookie Skillet||990|9|136|44|v|Wheat, Eggs, Milk, Soy
+Chicken Chimichanga||940|36|119|36||Wheat, Milk
+Cilantro Lime White Rice|0.5 cup|130|3|27|0|V,v,g|
+Brown Rice Pilaf|0.5 cup|120|2|22|2|V,v,g|
+Cumin & Pico Black Beans|0.5 cup|90|5|16|0|V,v,g|
+Refried Beans|1 serving|120|6|20|1|V,v,g|
+Mixed Artisan Greens|2 cup|15|0.7|3|0|V,v,g|
+Crunchy Taco Shell|1 each|90|1|11|4|V,v,g|
+Flour Tortilla|1 each|90|2|16|2|V,v|Wheat
+Crispy Tortilla Chips|4 oz|230|5|35|7|V,v,g|
+Ancho-Lime Chicken|4 oz|150|26|0|4|g|
+Taco Ground Beef|0.5 cup|200|13|2|14|g|
+Carne Asada Steak|4 oz|180|20|5|8|g|
+Shredded Monterey Jack Cheese|0.25 cup|110|6|0.5|9|v,g|Milk
+Baked Bell Peppers & Onions|0.25 cup|30|0.6|5|1|V,v,g|
+Shredded Romaine|1 cup|15|0.6|2|0|V,v,g|
+Smoky Corn Salsa|0.25 cup|25|0.8|5|0|V,v,g|
+Salsa Verde|2 floz|20|0|4|0|V,v,g|
+Mild Tomato Salsa|0.25 cup|20|0|6|0|V,v,g|
+Sour Cream|0.25 cup|120|2|4|9|v,g|Milk
+Guacamole|0.5 cup|230|4|8|23|V,v,g|
+Queso Cheese Sauce|0.5 cup|220|12|6|18|v,g|Milk
+Flour Tortilla|1 each|310|8|52|7|V,v|Wheat
+Chili Lime Vinaigrette|2 floz|330|0|2|35|V,v,g|
+Mangonada||190|0|44|0||
+Herb Parmesan Fries||770|12|82|47|v,g|Milk
+Chili Cheese Tater Tots||850|8|71|65||Wheat, Milk
+Buffalo Chicken Wings||1240|47|27|105||Wheat, Eggs, Milk, Soy
+Seasoned Chicken Wings||1150|47|25|96||Wheat, Eggs, Milk, Soy
+Veggies & Hummus Platter|1 platter|300|7|52|20|V,v,g|Sesame
+Chargrilled Caesar Salad||790|54|23|56||Wheat, Eggs, Fish, Milk
+Strawberry Pecan Salad||300|2|48|11|v,g|Tree Nuts, Milk, Soy
+Mojo Chicken Salad||780|52|30|52|g|Milk
+Side Salad with Ranch||460|9|13|42|v,g|Eggs, Milk, Soy
+Demon Deacon Burger||860|29|74|51||Wheat, Milk, Soy
+Classic Burger||880|29|74|54||Wheat, Eggs, Fish, Milk, Soy
+Mr Wake Forest Burger||950|30|74|61||Wheat, Eggs, Milk, Soy
+Ragin' Rodeo Burger||940|32|81|56|pork|Wheat, Milk, Soy
+Mark & Cheese Double Burger|1 serving|1220|52|83|76|pork|Wheat, Milk, Soy
+Tex Mex Tortilla Burger|1 serving|1280|49|75|89||Wheat, Milk, Soy
+Chicken Parm Hoagie||1180|41|108|66||Wheat, Milk, Soy
+Philly Cheesesteak Sandwich||830|38|77|43||Wheat, Milk, Soy
+Philly Chicken Cheesesteak Sandwich||790|19|84|35||Wheat, Milk, Soy
+Buffalo Chicken Wrap||1120|47|78|71||Wheat, Eggs, Milk, Soy
+Pepper Jack, Bacon and Grilled Chicken Sandwich||940|56|74|50|pork|Wheat, Eggs, Milk, Soy
+Cheese Quesadeacon||1020|37|77|64|v|Wheat, Milk
+Chicken Quesadeacon||1160|60|77|70||Wheat, Milk
+Vegan Black Bean Burger||790|25|99|37|V,v,cool_foods|Wheat, Soy
+Classic Dogs||860|24|105|39|pork|Wheat, Milk, Soy
+Chili Cheese Dogs||1070|29|120|57|pork|Wheat, Milk, Soy
+Carolina Slaw Dogs||990|26|106|53|pork|Wheat, Eggs, Milk, Soy
+Classic Loaded Baked Potato||880|26|108|39|pork|Milk
+Chili Cheese Baked Potato||720|17|121|22||Wheat, Milk
+Philly Cheesesteak Baked Potato||950|40|116|38|g|Milk
+Vanilla Milkshake||890|19|96|48|v,g|Milk
+Chocolate Milkshake||980|20|122|44|v,g|Milk
+Scoop of Vanilla Ice Cream|1 serving|260|5|32|14|v,g|Milk
+Scoop of Chocolate Ice Cream|1 serving|260|5|33|12|v,g|Milk
+Fried Oreo Dessert|4 each|950|15|135|41|v|Wheat, Milk, Soy
+Non-Dairy Vanilla Milkshake||1480|18|146|93|V,v,g|
+Scoop of Non-Dairy Vanilla Ice Cream|1 serving|270|3|26|17|V,v,g|
+Cinnamon Syrup||0|0|0|0||
+Blood Orange Syrup||80|0|19|0|V,v,g|
+Espresso Syrup||80|0|21|0|V,v,g|
+####
+pit>>Dinner~4:30pm-9pm~Southern Kitchen:0,1,2,3,4;Allgood:5,6,7,8;Allgood - Creation Station:9,10,11;Vegan Station:12,13,14,15,16,17,18,19,20,21;Veggie Burger:22,23,24,25,26,27;Build A Bowl:28,29,30,31;Handcrafted Additions:32,33,34,35,36,37,38,39;Top It Off:40,41,42,43,44,45,46,47,19,48,26,49,50,51;Deacon Grill:52,53,54,55,56,57;Grill Toppings:24,58,27,59,45,60,61,62,63,64,65,66,67,68,69,70,71,72;Housemade Soups:73,74;Hearthstone Freshly Made Pizza:75,76,77,78,79,80,81;Today's Pasta Specials:82,83;Pastabilities:84,85,86,87,58,88,89,90,91,92,93,94,95,96,97;Choose Your Protein:98,99,100,101,102,103,104,105;Sauces:9,80,106,107,108,109,110;Build Your Own Omelet:111,112,99,113,103,44;Omelet Add-Ins:87,58,41,114,94,89,93,95,115,116,96,72;Fruit & Yogurt:117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132;Performance Dining - Greens & Grains:133,134,58,135,136,18,137,87,138,59,139,140,141,142,143,144,145,146,147,30,46;Performance Dining - Housemade Dressings:148,149,150,151,152,153,154;Performance Dining - Proteins & More Greens:155,156,12,157,103,158,159,44,160,115,161,162,163,88,164,165,166,167,168,70,169;Toppings:170,171,172,173,174,175,176,177;Marketplace Deli:178,179,180,181,182,183,184,185,186,187,24,58,27,18,59,67,137,69,72,96,136,43,108,50,188,60,149,189;Select Breads:190,191,192,193,194,195,196;Bagel Station:197,198,199,200,201,202,43,203,204,205,109,206,207;Bakery:208;Self Serve Options:209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235
+north>>Dinner~4:30pm-8pm~Southern Kitchen:236,237,238,239,240;Zen Den:241,12,242,243;Zen Den Additions:244,245,246,247,248,168,249,142,136,250,16,68,251,19,252;Sauces & More:253,254,255,256,257,258;Pasta Corner:259;Grill:260,261,262,263,264,54,55,265;Build Your Own Omelet:111,266,113,44,267,95,58,93,94;Marketplace Deli:268,269,270,271,272,273,274,275;Soup:276;Produce Market / Dressings:149,150,148,153,277,278;Produce Market:58,133,134,135,18,267,95,136,93,87,279,147,30,280,70,71,68,165,167,164,69,172;Produce Market / Dairy & Protein:281,146,44,115,159,160,142,12,105,98,156,157,101;Fruit & Yogurt:117,118,119,120,282,275,177,174;Breads & Spreads:197,202,200,201,190,191,192,283,284,285,43,286,109,204,287,288;Self Serve Options:289,220,218,217,290,209,211,223,225,226,224,222,291,292
+zicks>>Sun - Wed~11am-11pm~Signature Flatbreads & Slices:293,294,295,296,297,298,299,300,301;Build Your Own Pizza:302,303,81,304,305,306,307,308,309,44,97,310,311,312,313,314,96,315,58,72,95,27,267,316,317,103,318,319,320,99;Appetizers & Desserts:321,322,323,324
+sabrosa>>Mon - Sun~11am-10pm~Signature Sandwiches:325;Choose Your Base:326,327,328,329,330,331,332,333;Choose Your Protein:334,335,336,113;Choose Your Toppings:328,329,337,338,339,41,340,341,342,343,344,345;Sides:346,347,333,342,344,345;Iced Beverages:348
+shortys>>Mon - Fri~11am-9pm~Starters:349,350,351,352,353;Salads:354,355,356,357;Burgers And Sandwiches:358,359,360,361,362,363,364,365,366,367,368,369,370,371;Hot Dogs:372,373,374;Baked Potatoes:375,376,377;Dessert:378,379,380,381,382,383,384,385,386,387

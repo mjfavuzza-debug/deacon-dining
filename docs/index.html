@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deacon Plate</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>Deacon Plate</h1>
+    <p class="sub" id="subtitle">Where to eat at Wake, what to get, and how your day adds up.</p>
+  </div>
+  <button class="ghost" id="open-settings" aria-label="Settings">Settings</button>
+</header>
+
+<main>
+  <div id="banner"></div>
+
+  <section class="card" id="today" aria-label="Today"></section>
+
+  <section class="card" id="pick" aria-label="Top pick right now"></section>
+
+  <section class="card chat" aria-label="Chat">
+    <h2>Tell me anything</h2>
+    <div id="messages" class="messages" aria-live="polite"></div>
+    <div class="chips" id="chips">
+      <button data-say="Where should I eat?">Where should I eat?</button>
+      <button data-say="High protein plate">High protein</button>
+      <button data-say="Something lighter">Lighter</button>
+      <button data-fill="I ran 30 minutes">I worked out</button>
+      <button data-fill="I had the ">I ate...</button>
+      <button data-say="Undo">Undo last</button>
+    </div>
+    <form id="chat-form" class="chat-form" autocomplete="off">
+      <input id="chat-input" type="text" placeholder='Try "had the chicken teriyaki at North" or "burned 350 lifting"' aria-label="Message">
+      <button type="submit" id="send">Send</button>
+    </form>
+    <p class="hint" id="ai-hint"></p>
+  </section>
+
+  <section class="card" aria-label="Browse menus">
+    <h2>Browse the menus</h2>
+    <div class="browse-controls">
+      <select id="b-loc" aria-label="Place"></select>
+      <select id="b-meal" aria-label="Meal"></select>
+      <input id="b-search" type="search" placeholder="Search this menu" aria-label="Search">
+    </div>
+    <div id="browse"></div>
+  </section>
+
+  <footer>
+    <p>Menu and nutrition numbers come from <a href="https://dining.wfu.edu" target="_blank" rel="noopener">dining.wfu.edu</a> and are only as accurate as that site. Chick-fil-A numbers come from the chain's own nutrition page. This is a class project, not medical or nutrition advice. For allergies, always check with dining staff.</p>
+  </footer>
+</main>
+
+<dialog id="settings">
+  <form method="dialog" id="settings-form">
+    <h2>Settings</h2>
+    <fieldset>
+      <legend>Daily goals</legend>
+      <p class="hint">Starts at the reference values printed on US nutrition labels. Change them to your own.</p>
+      <div class="grid4">
+        <label>Calories <input type="number" id="g-cal" min="800" max="6000" step="50"></label>
+        <label>Protein g <input type="number" id="g-protein" min="10" max="400"></label>
+        <label>Carbs g <input type="number" id="g-carbs" min="10" max="900"></label>
+        <label>Fat g <input type="number" id="g-fat" min="10" max="400"></label>
+      </div>
+      <label>Plate style
+        <select id="s-mode"><option value="balanced">Balanced</option><option value="high-protein">High protein</option><option value="lighter">Lighter</option></select>
+      </label>
+      <label>Weight in pounds (optional, only used to estimate workout calories) <input type="number" id="s-weight" min="70" max="500"></label>
+    </fieldset>
+    <fieldset>
+      <legend>Food preferences</legend>
+      <label>Diet
+        <select id="p-diet"><option value="any">No restriction</option><option value="vegetarian">Vegetarian</option><option value="vegan">Vegan</option></select>
+      </label>
+      <label class="check"><input type="checkbox" id="p-pork"> No pork</label>
+      <label class="check"><input type="checkbox" id="p-gluten"> Made without gluten only</label>
+      <label>Allergens to avoid, separated by commas <input type="text" id="p-avoid" placeholder="milk, peanuts, shellfish"></label>
+    </fieldset>
+    <fieldset>
+      <legend>AI chat</legend>
+      <p class="hint">Without a key, the buttons and a few simple phrases still work. With a key you can type anything. Your key is saved in this browser only and is sent only to the AI company you pick.</p>
+      <label>Provider
+        <select id="ai-provider"><option value="gemini">Google Gemini (free key)</option><option value="claude">Anthropic Claude (paid key)</option></select>
+      </label>
+      <label>API key <input type="password" id="ai-key" autocomplete="off" placeholder="Paste your key here"></label>
+      <label>Model (leave blank for the default) <input type="text" id="ai-model" autocomplete="off"></label>
+    </fieldset>
+    <div class="row">
+      <button type="button" class="ghost" id="clear-day">Clear today's log</button>
+      <span class="spacer"></span>
+      <button type="button" class="ghost" id="cancel-settings">Cancel</button>
+      <button type="submit" id="save-settings">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="menu-data.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
