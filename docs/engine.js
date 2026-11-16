@@ -71,11 +71,30 @@
     return meal.hours ? 'open ' + meal.hours : 'menu';
   }
 
+  function fmtClock(mins) {
+    mins = ((mins % 1440) + 1440) % 1440;
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    return ((h + 11) % 12 + 1) + (m ? ':' + String(m).padStart(2, '0') : '') + (h < 12 ? 'am' : 'pm');
+  }
+
+  // One line for the place strip: {state: 'open'|'later'|'closed'|'unknown', text}
+  function placeStatus(loc, now) {
+    const am = activeMeal(loc, now);
+    if (!am) return { state: 'closed', text: 'Closed for today' };
+    const h = parseHours(am.meal.hours);
+    const label = loc.kind === 'hall' ? am.meal.name + ' ' : '';
+    if (am.status === 'open') return { state: 'open', text: (label + 'until ' + fmtClock(h.end)).replace(/^u/, 'U') };
+    if (am.status === 'later') return { state: 'later', text: label ? label + 'at ' + fmtClock(h.start) : 'Opens ' + fmtClock(h.start) };
+    return { state: 'unknown', text: 'Check posted hours' };
+  }
+
   // ---------- food ----------
   const EXTRA_STATION = /topping|add-?\s?ins|sauce|dressing|select breads|bagel|cereal|self serve|condiment|additions|top it off|beverage|drink|spreads|build your own pizza/i;
   // Build-your-own lines in the dining halls: fine as a protein, odd as an automatic side.
   const COMPONENT_STATION = /omelet|yogurt|deli|produce market|performance dining|pastabilities|choose your|build a bowl|veggie burger/i;
   const TREAT = /bakery|dessert|cookie|brownie|cake|ice cream|milkshake|pie\b|donut|pastry|muffin|lemonade/i;
+  const CONDIMENT = /\b(mayo|mayonnaise|sauce|dressing|ketchup|mustard|syrup|butter|jam|oil|gravy|crema|salsa|aioli|vinaigrette|preserves|marmalade|honey|nutella|cream cheese|sour cream|guacamole|queso)\b/i;
   const VEG = /broccoli|green bean|spinach|salad|vegetable|veggie|carrot|squash|zucchini|brussels|asparagus|kale|cauliflower|\bpeas\b|greens|cucumber|tomato|cabbage|mushroom|fruit|edamame|bok choy/i;
 
   function okForPrefs(r, prefs) {
@@ -97,6 +116,7 @@
     if (r.flag) return 'extra'; // numbers on the dining site do not add up, so never auto-pick it
     if (TREAT.test(stationName) || TREAT.test(r.name)) return 'treat';
     if (EXTRA_STATION.test(stationName)) return 'extra';
+    if (CONDIMENT.test(r.name)) return 'extra';
     if ((r.protein || 0) >= 12 && r.cal >= 150) return 'main';
     if (kind === 'hall' && COMPONENT_STATION.test(stationName)) return 'extra';
     if (kind === 'hall' && /\b(roll|bun|bread|bagel|wrap|tortilla|crust)\b/i.test(r.name)) return 'extra';
@@ -256,6 +276,21 @@
       out.push({ loc, meal: am.meal, status: am.status, plate, score, target });
     }
     out.sort((a, b) => b.score - a.score);
+    return out;
+  }
+
+  // The last seven days, oldest first, for the week row.
+  function weekSummary(state, now) {
+    const out = [];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i, 12);
+      const day = state.days[dayKey(d)];
+      const log = (day && day.log) || [];
+      let protein = 0;
+      let cal = 0;
+      for (const e of log) if (e.type === 'food') { protein += e.protein; cal += e.cal; }
+      out.push({ letter: 'SMTWTFS'[d.getDay()], today: i === 0, logged: log.length > 0, proteinHit: protein >= state.goals.protein, cal: Math.round(cal) });
+    }
     return out;
   }
 
@@ -470,7 +505,7 @@
     return { reply, actions, index };
   }
 
-  const Engine = { parseHours, parseDays, mealStatus, activeMeal, mealLabel, okForPrefs, role, mealItems, buildPlate, DEFAULT_GOALS, dayKey, newState, dayLog, dayTotals, mealsLeft, mealTarget, rankLocations, estimateBurn, logFood, applyActions, buildMenuContext, buildSystemPrompt, parseModelReply, localBrain, findMenuItem };
+  const Engine = { fmtClock, placeStatus, weekSummary, parseHours, parseDays, mealStatus, activeMeal, mealLabel, okForPrefs, role, mealItems, buildPlate, DEFAULT_GOALS, dayKey, newState, dayLog, dayTotals, mealsLeft, mealTarget, rankLocations, estimateBurn, logFood, applyActions, buildMenuContext, buildSystemPrompt, parseModelReply, localBrain, findMenuItem };
   if (typeof module !== 'undefined' && module.exports) module.exports = Engine;
   else root.Engine = Engine;
 })(typeof window !== 'undefined' ? window : globalThis);

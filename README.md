@@ -22,7 +22,7 @@ Double-click `docs/index.html`. It opens in your browser and works offline with 
 | Places | `scraper/locations.js`, `scraper/chains.js` | The list of places, and the Chick-fil-A numbers |
 | Brain | `docs/engine.js` | Hours, plate building, tracking, chat actions, the AI prompt |
 | Page | `docs/index.html`, `docs/app.js`, `docs/style.css` | What you see, plus the calls to Gemini or Claude |
-| Schedule | `setup/daily-menu-schedule.yml.txt` | Goes on GitHub as `.github/workflows/menus.yml` so GitHub runs the collector every morning (see PLAN.md step 1) |
+| Schedule | `.github/workflows/menus.yml` on GitHub | Has GitHub run the collector every morning. A spare copy is in `setup/` |
 | Tests | `tests/test.js`, `tests/page-test.js` | Checks that everything still works |
 
 ## Updating the menu yourself
@@ -48,5 +48,5 @@ Paste it in the app under Settings. It is saved in your browser only. Never put 
 - The dining site only publishes today's menu, so the agent cannot plan tomorrow.
 - A few items on the dining site have numbers that cannot be right (pizza slices listed with 82 g of fat). The app marks them and never auto-picks them.
 - Subway, Bento Sushi and Village Juice are not included yet. See PLAN.md.
-- The starter menu file in this folder holds dinner menus from Nov 16, 2026. It refreshes the first time the collector runs.
+- The menu file in this folder is from the last time it was copied from GitHub. The public link always has today's.
 - This is a class project, not medical or nutrition advice.

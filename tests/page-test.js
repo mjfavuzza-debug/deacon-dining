@@ -37,17 +37,23 @@ const assert = require('assert');
   // eat the top pick
   d.querySelector('#pick [data-eat]').click();
   console.log('AFTER EAT:', txt('#today').slice(0, 120));
-  assert.ok(/logged today/.test(txt('#today')));
+  assert.ok(d.querySelector('#pick .plate.eaten'), 'ticket shows the Logged stamp');
+  // tap a place in the strip
+  d.querySelector('[data-place="cfa"]').click();
+  assert.ok(/Chick-fil-A/.test(txt('#pick h3')), txt('#pick'));
+  d.querySelector('[data-place="cfa"]').click();
+  assert.ok(d.querySelectorAll('#logged .log li').length >= 1);
   // no-key chat
   d.querySelector('#chat-input').value = 'lifted and burned 400';
   d.querySelector('#chat-form').dispatchEvent(new w.Event('submit', { cancelable: true }));
   await wait(30);
   assert.ok(/Burned 400/.test(txt('#today')), txt('#today'));
   assert.strictEqual(fetchCalls.length, 0, 'no network without a key');
-  // shuffle inside chat
-  const before = d.querySelector('#messages .plate ul').textContent;
-  d.querySelector('#messages [data-shuffle]').click();
-  assert.notStrictEqual(d.querySelector('#messages .plate ul').textContent, before, 'shuffle changes the plate');
+  assert.ok(/It is on the ticket/.test(txt('#messages')));
+  // shuffle the ticket
+  const before = d.querySelector('#pick .plate ul').textContent;
+  d.querySelector('#pick [data-shuffle]').click();
+  assert.notStrictEqual(d.querySelector('#pick .plate ul').textContent, before, 'shuffle changes the plate');
   // browse + search + add
   d.querySelector('#b-loc').value = 'cfa'; d.querySelector('#b-loc').dispatchEvent(new w.Event('change'));
   d.querySelector('#b-search').value = 'nuggets'; d.querySelector('#b-search').dispatchEvent(new w.Event('input'));
@@ -70,6 +76,7 @@ const assert = require('assert');
   d.querySelector('#chat-form').dispatchEvent(new w.Event('submit', { cancelable: true }));
   await wait(50);
   const call = fetchCalls[0];
+  assert.strictEqual(fetchCalls.length, 1);
   assert.ok(/generativelanguage\.googleapis\.com\/v1beta\/models\/gemini-flash-latest:generateContent$/.test(call.url), call.url);
   assert.strictEqual(call.opts.headers['x-goog-api-key'], 'TEST-KEY');
   assert.ok(!/TEST-KEY/.test(call.url), 'key never goes in the URL');
@@ -78,6 +85,18 @@ const assert = require('assert');
   for (let i = 1; i < sent.contents.length; i++) assert.notStrictEqual(sent.contents[i].role, sent.contents[i - 1].role, 'turns alternate');
   const msgs = txt('#messages');
   assert.ok(/Teriyaki logged/.test(msgs) && /Logged Sauteed Chicken Teriyaki: 230 cal, 22g protein/.test(msgs) && /Protein finisher/.test(msgs), msgs.slice(-400));
+  // Gemini overloaded (503) on the first model: retries, then moves to the next model
+  fetchCalls = [];
+  w.__fetchImpl = async (url) => (/gemini-flash-latest/.test(url)
+    ? { ok: false, status: 503, json: async () => ({ error: { message: 'The model is overloaded.' } }) }
+    : { ok: true, status: 200, json: async () => ({ candidates: [{ content: { parts: [{ text: '{"reply":"Back online.","actions":[]}' }] } }] }) });
+  d.querySelector('#chat-input').value = 'hello there';
+  d.querySelector('#chat-form').dispatchEvent(new w.Event('submit', { cancelable: true }));
+  await wait(2800);
+  assert.strictEqual(fetchCalls.length, 3, 'two tries on the busy model, then the next one');
+  assert.ok(/gemini-3\.5-flash-lite/.test(fetchCalls[2].url));
+  assert.ok(/Back online/.test(txt('#messages')));
+  fetchCalls = [];
   // Claude provider + an error falls back to the built-in brain
   d.querySelector('#open-settings').click();
   d.querySelector('#ai-provider').value = 'claude';

@@ -5,38 +5,30 @@ Written Nov 16, 2026. Each step is small enough to hand to Claude Code with a sm
 ## Done
 
 1. Menu collector for the Pit, North Dining Hall, Zick's, La Sabrosa, Shorty's, plus Chick-fil-A from the chain's nutrition page.
-2. The app: top pick, plate builder with shuffle, daily tracker, workouts, chat (Gemini or Claude, or no key), browse and filters, settings.
-3. Tests: 10 logic tests and a full page test, all passing on the real Nov 16 dinner menus.
+2. The app: calorie dial and week row, place strip, order-ticket plates with shuffle, daily tracker, workouts, chat (Gemini or Claude, or no key), menus with filters, settings.
+3. Tests: 11 logic tests and a full page test, all passing on the real Nov 16 dinner menus.
 4. Daily schedule file for GitHub.
 
-## Step 1: get the code onto GitHub (needs Marco)
+## Step 1: code on GitHub (done Nov 16)
 
-Claude could see the `deacon-dining` repository but was not allowed to push to it. Pick one:
+The code is at https://github.com/mjfavuzza-debug/deacon-dining, including the daily schedule at `.github/workflows/menus.yml`. GitHub ran the collector once on Nov 16 and it read all five WFU locations. It now runs by itself every morning. `setup/daily-menu-schedule.yml.txt` is only a spare copy of the schedule.
 
-- Install the Claude GitHub App on the repository at https://github.com/apps/claude/installations/select_target, then ask Claude to push.
-- Or upload by hand: on github.com open the repository, choose "uploading an existing file", and drag in the `docs`, `scraper`, `tests` and `setup` folders plus `README.md` and `PLAN.md`.
+To get the latest version from the laptop folder onto GitHub later, ask Claude: "Push everything in this folder to the main branch of mjfavuzza-debug/deacon-dining."
 
-Prompt: "Push everything in this folder to the main branch of mjfavuzza-debug/deacon-dining."
+## Step 2: turn on the public link (needs Marco, one minute)
 
-Then add the daily schedule. Claude was not allowed to save this one file into the folder, so its text is in `setup/daily-menu-schedule.yml.txt`:
+1. On GitHub open the repository, then Settings, Pages.
+2. Under "Build and deployment", set Source to "Deploy from a branch", Branch `main`, folder `/docs`, and click Save.
+3. Wait about a minute. The link will be https://mjfavuzza-debug.github.io/deacon-dining/
 
-1. On GitHub open the repository, click "Add file", "Create new file".
-2. Name it exactly `.github/workflows/menus.yml` (typing the slashes creates the folders).
-3. Paste in everything from `setup/daily-menu-schedule.yml.txt` and click "Commit changes".
-
-## Step 2: turn on the public link (needs Marco, two minutes)
-
-1. On GitHub: Settings, Pages, Source "Deploy from a branch", Branch `main`, folder `/docs`, Save.
-2. On GitHub: Actions, "Collect today's menus", "Run workflow". This fills in today's full menu and proves the daily schedule works.
-3. The link will be https://mjfavuzza-debug.github.io/deacon-dining/
-
-If the collector fails on GitHub with an HTTP error, the dining site may be blocking GitHub's servers. Fallback: run `node scraper/collect.js` on the laptop each morning and push.
+To collect the menu by hand at any time: Actions, "Collect today's menus", "Run workflow".
 
 ## Step 3: first real AI chat (needs Marco's key)
 
 1. Open the app, Settings, paste the Gemini key, Save.
 2. Type "I just lifted for 45 minutes, what should I eat?"
-3. If it errors: the model name or web address may have changed. Check https://ai.google.dev/gemini-api/docs/models and update `DEFAULT_MODEL` and the fetch address in `docs/app.js` (function `callAI`).
+3. A 503 error means Google's servers were overloaded. The app now retries and then tries three other Gemini models by itself, so this should be rare.
+4. If it still errors: the model name or web address may have changed. Check https://ai.google.dev/gemini-api/docs/models and update `DEFAULT_MODEL` and the fetch address in `docs/app.js` (function `callAI`).
 
 Prompt: "The Gemini chat in docs/app.js returns an error: <paste error>. Check the current Gemini API docs and fix callAI."
 

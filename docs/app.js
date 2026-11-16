@@ -5,6 +5,8 @@
   const MENU = window.MENU;
   const STORE = 'deaconplate.v1';
   const DEFAULT_MODEL = { gemini: 'gemini-flash-latest', claude: 'claude-haiku-5-5' };
+  // Tried in this order when the model box in settings is blank. Names from ai.google.dev/gemini-api/docs/models, Nov 16, 2026.
+  const GEMINI_MODELS = ['gemini-flash-latest', 'gemini-3.5-flash-lite', 'gemini-3.8-flash', 'gemini-3.6-flash'];
   const $ = (s) => document.querySelector(s);
   const esc = (s) => String(s === null || s === undefined ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const now = () => new Date();
@@ -52,62 +54,93 @@
     $('#banner').innerHTML = msgs.length ? '<div class="banner">' + msgs.map(esc).join('<br>') + '</div>' : '';
   }
 
-  // ---------- today ----------
-  function bar(label, value, goal, unit) {
+  // ---------- the day (black area at the top) ----------
+  const ARC = 270.2; // length of the dial's half circle
+  let lastOffset = ARC;
+  const fmt = (n) => Number(n).toLocaleString('en-US');
+
+  function meter(label, value, goal) {
     const pct = goal > 0 ? Math.min(100, Math.round((value / goal) * 100)) : 0;
-    return '<div class="bar-row"><span>' + label + '</span><div class="bar' + (value > goal * 1.05 ? ' over' : '') + '"><i style="width:' + pct + '%"></i></div><span class="num">' + value + ' / ' + goal + (unit || '') + '</span></div>';
+    return '<div class="meter' + (value >= goal ? ' hit' : '') + '"><span>' + label + '</span><div class="rail"><i style="width:' + pct + '%"></i></div><span class="num">' + value + ' of ' + goal + 'g</span></div>';
   }
   function renderToday() {
     const t = E.dayTotals(state, now());
-    const log = E.dayLog(state, now());
-    const left = t.left;
-    let html = '<div class="today-head"><div><h2>Today</h2><div class="big">' + Math.abs(left) + ' <small>cal ' + (left >= 0 ? 'left' : 'over') + '</small></div></div>' +
-      '<div class="note">' + (t.burned ? 'Burned ' + t.burned + ' cal in workouts, added to your budget.' : 'Log a workout and I add it to your budget.') + (state.goalsSet ? '' : '<br>Using label-standard goals. Set your own in Settings.') + '</div></div>';
-    html += '<div class="bars">' + bar('Calories', t.eaten.cal, t.budget, '') + bar('Protein', t.eaten.protein, state.goals.protein, 'g') + bar('Carbs', t.eaten.carbs, state.goals.carbs, 'g') + bar('Fat', t.eaten.fat, state.goals.fat, 'g') + '</div>';
-    if (log.length) {
-      html += '<details' + (log.length <= 4 ? ' open' : '') + '><summary>' + log.length + ' logged today</summary><ul class="log">' + log.map((e) =>
-        '<li><span>' + esc(e.name) + (e.servings && e.servings !== 1 ? ' x' + e.servings : '') + (e.loc ? ' <span class="meta">' + esc(e.loc) + '</span>' : '') + '</span><span class="meta">' +
-        (e.type === 'food' ? e.cal + ' cal, ' + e.protein + 'g protein' : 'burned ' + e.cal + ' cal' + (e.est ? ' (est.)' : '')) +
-        ' <button class="x" data-remove="' + esc(e.id) + '" aria-label="Remove ' + esc(e.name) + '">&times;</button></span></li>').join('') + '</ul></details>';
-    }
-    $('#today').innerHTML = html;
+    const pct = t.budget > 0 ? Math.min(1, t.eaten.cal / t.budget) : 0;
+    const offset = ARC * (1 - pct);
+    const week = E.weekSummary(state, now());
+    const hits = week.filter((d) => d.proteinHit).length;
+    $('#today').innerHTML =
+      '<div class="dial' + (t.left < 0 ? ' over' : '') + '"><svg viewBox="0 0 200 112" aria-hidden="true">' +
+      '<path class="track" d="M 14 100 A 86 86 0 0 1 186 100" fill="none" stroke-width="14" stroke-linecap="round"/>' +
+      '<path class="fill" d="M 14 100 A 86 86 0 0 1 186 100" fill="none" stroke-width="14" stroke-linecap="round" stroke-dasharray="' + ARC + '" stroke-dashoffset="' + lastOffset + '"/></svg>' +
+      '<div class="dial-read"><b>' + fmt(Math.abs(t.left)) + '</b><span>calories ' + (t.left >= 0 ? 'left' : 'over') + ' of ' + fmt(t.budget) + '</span></div></div>' +
+      '<div><div class="meters">' + meter('Protein', t.eaten.protein, state.goals.protein) + meter('Carbs', t.eaten.carbs, state.goals.carbs) + meter('Fat', t.eaten.fat, state.goals.fat) + '</div>' +
+      '<div class="hero-foot"><div class="week" title="Last 7 days. Gold means you hit your protein goal.">' + week.map((d) => '<i class="' + (d.proteinHit ? 'hit' : d.logged ? 'logged' : '') + (d.today ? ' today' : '') + '">' + d.letter + '</i>').join('') + '</div>' +
+      '<span>' + (hits ? 'Protein goal hit ' + hits + ' of the last 7 days. ' : '') + (t.burned ? 'Burned ' + fmt(t.burned) + ' in workouts, added to your budget.' : state.goalsSet ? 'Tell me about a workout and I add it to your budget.' : 'These are the standard label goals. Set your own in settings.') + '</span></div></div>';
+    const fill = $('#today .fill');
+    requestAnimationFrame(() => { if (fill) fill.setAttribute('stroke-dashoffset', offset); });
+    lastOffset = offset;
+    renderLogged();
   }
 
-  // ---------- plate cards ----------
+  function renderLogged() {
+    const log = E.dayLog(state, now());
+    $('#logged').innerHTML = '<h2>Logged today</h2>' + (log.length
+      ? '<ul class="log">' + log.map((e) =>
+        '<li><span>' + esc(e.name) + (e.servings && e.servings !== 1 ? ' x' + e.servings : '') + (e.loc ? ' <span class="meta">' + esc(e.loc) + '</span>' : '') + '</span><span class="meta">' +
+        (e.type === 'food' ? e.cal + ' cal, ' + e.protein + 'g protein' : 'burned ' + e.cal + ' cal' + (e.est ? ' (estimate)' : '')) +
+        ' <button class="x" data-remove="' + esc(e.id) + '" aria-label="Remove ' + esc(e.name) + '">&times;</button></span></li>').join('') + '</ul>'
+      : '<p class="empty">Nothing yet. Tap "I ate this" on a ticket, add items from a menu, or just tell me in the chat.</p>');
+  }
+
+  // ---------- places ----------
+  let pickLoc = null; // a place the student tapped, or null for "best right now"
+  function renderPlaces() {
+    $('#places').innerHTML = '<div class="places-inner">' + MENU.locations.map((l) => {
+      const st = E.placeStatus(l, now());
+      return '<button class="place ' + st.state + (pickLoc === l.id ? ' on' : '') + '" data-place="' + esc(l.id) + '"' + (st.state === 'closed' ? ' disabled' : '') + '><span class="dot"></span><b>' + esc(l.name) + '</b><small>' + esc(st.text) + '</small></button>';
+    }).join('') + '</div>';
+  }
+
+  // ---------- tickets ----------
   function registerCard(c) { cardSeq += 1; const id = 'c' + cardSeq; cards[id] = c; return id; }
 
   function plateHTML(id, opts) {
     const c = cards[id];
     opts = opts || {};
-    const st = c.status === 'open' ? '<span class="badge open">Open now</span>' : c.status === 'later' ? '<span class="badge later">Opens later</span>' : '';
-    return '<div class="plate' + (opts.top ? ' top-pick' : '') + '">' +
-      '<h3>' + (opts.top ? '<span class="badge">Top pick</span>' : '') + esc(c.title || c.locName) + '</h3>' +
-      '<div class="where">' + st + esc(c.sub || '') + '</div><ul>' +
-      c.plate.items.map((i) => '<li><span>' + (i.servings !== 1 ? i.servings + ' x ' : '') + esc(i.name) + (i.station ? ' <span class="station">' + esc(i.station) + '</span>' : '') + '</span><span>' + i.cal + ' cal, ' + i.protein + 'g</span></li>').join('') +
-      '</ul><div class="total">' + c.plate.totals.cal + ' cal &middot; ' + c.plate.totals.protein + 'g protein &middot; ' + c.plate.totals.carbs + 'g carbs &middot; ' + c.plate.totals.fat + 'g fat</div>' +
-      '<div class="actions"><button class="gold small" data-eat="' + id + '"' + (c.eaten ? ' disabled' : '') + '>' + (c.eaten ? 'Logged' : 'I ate this') + '</button>' +
-      (c.shuffle ? '<button class="ghost small" data-shuffle="' + id + '">Shuffle</button>' : '') + '</div></div>';
+    const just = c.justEaten;
+    c.justEaten = false;
+    return '<div class="plate' + (opts.mini ? ' mini' : '') + (c.eaten ? ' eaten' : '') + (just ? ' just-eaten' : '') + '">' +
+      '<div class="stamp">Logged</div>' +
+      '<h3>' + esc(c.title || c.locName) + '</h3>' +
+      '<div class="where">' + (opts.top ? '<span class="tag top">Top pick</span>' : '') + (c.status === 'open' ? '<span class="tag open">Open now</span>' : c.status === 'later' ? '<span class="tag">Opens later</span>' : '') + esc(c.sub || '') + '</div><ul>' +
+      c.plate.items.map((i) => '<li><span class="what">' + (i.servings !== 1 ? i.servings + ' x ' : '') + esc(i.name) + (i.station ? '<span class="st">' + esc(i.station) + (i.serving ? ', ' + esc(i.serving) + (i.servings !== 1 ? ' each' : '') : '') + '</span>' : '') + '</span><span class="lead"></span><span class="nums">' + i.cal + ' cal, ' + i.protein + 'g protein</span></li>').join('') +
+      '</ul><div class="total"><b>' + fmt(c.plate.totals.cal) + ' cal</b><b>' + c.plate.totals.protein + 'g protein</b><span>' + c.plate.totals.carbs + 'g carbs, ' + c.plate.totals.fat + 'g fat</span></div>' +
+      '<div class="actions"><button class="gold" data-eat="' + id + '"' + (c.eaten ? ' disabled' : '') + '>' + (c.eaten ? 'Logged' : 'I ate this') + '</button>' +
+      (c.shuffle && !c.eaten ? '<button class="quiet dark" data-shuffle="' + id + '">Shuffle</button>' : '') + '</div></div>';
   }
 
   function pickCards(only, count) {
     const ranked = E.rankLocations(MENU, state, now(), { seed, only: only || undefined, avoidIds: lastMains });
     return ranked.slice(0, count || 3).map((r) => registerCard({
       locId: r.loc.id, locName: r.loc.name, title: r.loc.name, status: r.status,
-      sub: r.loc.where + ' · ' + E.mealLabel(r.loc, r.meal), plate: r.plate, shuffle: true, note: r.target.note,
+      sub: r.loc.where + ', ' + E.placeStatus(r.loc, now()).text.replace(/^./, (ch) => ch.toLowerCase()), plate: r.plate, shuffle: true,
     }));
   }
 
-  function renderPick() {
-    const ids = pickCards(null, 1);
+  let pickId = null;
+  function newPick() { pickId = pickCards(pickLoc, 1)[0] || null; drawPick(); }
+  function drawPick() {
     const target = E.mealTarget(state, now());
-    if (!ids.length) {
-      $('#pick').innerHTML = '<h2>Right now</h2><p class="note">Everything I track is closed for the rest of today. Check back in the morning.</p>';
+    const head = '<div class="pick-head"><h2>' + (pickLoc ? 'What to get here' : 'Where to eat right now') + '</h2><p>Aiming for about ' + target.cal + ' cal and at least ' + target.protein + 'g protein' + (state.mode !== 'balanced' ? ', ' + esc(state.mode.replace('-', ' ')) : '') + '</p></div>';
+    if (!pickId) {
+      $('#pick').innerHTML = head + '<div class="panel"><p class="empty">' + (pickLoc ? 'Nothing here fits your food preferences right now. Tap another place above.' : 'Everything is closed for the rest of today. Check back in the morning.') + '</p></div>';
       return;
     }
-    $('#pick').dataset.card = ids[0];
-    $('#pick').innerHTML = '<h2>Right now</h2>' + plateHTML(ids[0], { top: true }) +
-      '<p class="note">Aiming for about ' + target.cal + ' cal and ' + target.protein + 'g+ protein this meal (' + esc(state.mode.replace('-', ' ')) + ').' + (target.note ? ' ' + esc(target.note) : '') + '</p>';
+    $('#pick').innerHTML = head + plateHTML(pickId, { top: !pickLoc }) + (target.note ? '<p class="note">' + esc(target.note) + '</p>' : '') +
+      (pickLoc ? '<p class="note"><button class="quiet dark small" data-place="">Back to the best place right now</button></p>' : '');
   }
+  function renderPick() { newPick(); }
 
   // ---------- chat ----------
   function say(who, text, extra) {
@@ -121,7 +154,7 @@
       if (m.text || (m.notes && m.notes.length)) {
         html += '<div class="msg ' + m.who + (m.typing ? ' typing' : '') + '">' + esc(m.text) + (m.notes || []).map((n) => '<span class="logged">' + esc(n) + '</span>').join('') + '</div>';
       }
-      if (m.cards && m.cards.length) html += '<div class="msg bot wide">' + m.cards.map((id, i) => plateHTML(id, { top: m.rank && i === 0 })).join('') + '</div>';
+      if (m.cards && m.cards.length) html += '<div class="msg bot wide">' + m.cards.map((id, i) => plateHTML(id, { mini: true, top: m.rank && i === 0 })).join('') + '</div>';
       return html;
     }).join('');
     box.scrollTop = box.scrollHeight;
@@ -132,36 +165,62 @@
     return t.left >= 0 ? t.left + ' cal left today, ' + Math.max(0, t.proteinLeft) + 'g protein to go.' : 'You are ' + Math.abs(t.left) + ' cal over your goal today. One day does not matter much.';
   }
 
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  async function geminiOnce(model, sys, turns) {
+    return fetch('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(model) + ':generateContent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': state.ai.key },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: sys }] },
+        contents: turns.map((t) => ({ role: t.who === 'me' ? 'user' : 'model', parts: [{ text: t.text }] })),
+        generationConfig: { responseMimeType: 'application/json', temperature: 0.5 },
+      }),
+    });
+  }
+
+  async function errorFrom(res) {
+    let detail = '';
+    try { const j = await res.json(); detail = (j.error && (j.error.message || j.error.type)) || ''; } catch (e) { /* ignore */ }
+    const st = res.status;
+    const msg = st === 429 ? 'The AI is at its usage limit right now (free keys have a daily cap).'
+      : st === 401 || st === 403 || (st === 400 && /key/i.test(detail)) ? 'The AI key was not accepted. Check it in settings.'
+      : st === 503 || st === 500 || st === 529 ? "The AI company's servers are overloaded right now. Try again in a minute."
+      : 'The AI service answered with an error (' + st + ').';
+    const err = new Error(msg + (detail && !/key/i.test(msg) ? ' Their message: "' + detail.slice(0, 140) + '"' : ''));
+    err.status = st;
+    return err;
+  }
+
   async function callAI(sys, turns) {
     const provider = state.ai.provider === 'claude' ? 'claude' : 'gemini';
-    const model = (state.ai.model || '').trim() || DEFAULT_MODEL[provider];
-    let res;
+    const chosen = (state.ai.model || '').trim();
     if (provider === 'gemini') {
-      res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(model) + ':generateContent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': state.ai.key },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: sys }] },
-          contents: turns.map((t) => ({ role: t.who === 'me' ? 'user' : 'model', parts: [{ text: t.text }] })),
-          generationConfig: { responseMimeType: 'application/json', temperature: 0.5 },
-        }),
-      });
-    } else {
-      res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-api-key': state.ai.key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-        body: JSON.stringify({ model, max_tokens: 1024, system: sys, messages: turns.map((t) => ({ role: t.who === 'me' ? 'user' : 'assistant', content: t.text })) }),
-      });
+      // A busy or missing model is common on free keys, so try a few before giving up.
+      const models = chosen ? [chosen] : GEMINI_MODELS;
+      let lastErr = null;
+      for (const model of models) {
+        for (let attempt = 0; attempt < 2; attempt++) {
+          const res = await geminiOnce(model, sys, turns);
+          if (res.ok) {
+            const data = await res.json();
+            return (((data.candidates || [])[0] || {}).content || { parts: [] }).parts.map((p) => p.text || '').join('');
+          }
+          lastErr = await errorFrom(res);
+          if (lastErr.status === 401 || lastErr.status === 403 || lastErr.status === 400) throw lastErr; // a bad key will not get better
+          if (lastErr.status === 503 || lastErr.status === 500) { await wait(1200); continue; } // overloaded: one more try on this model
+          break; // 404 or 429: move to the next model
+        }
+      }
+      throw lastErr;
     }
-    if (!res.ok) {
-      let detail = '';
-      try { const j = await res.json(); detail = (j.error && (j.error.message || j.error.type)) || ''; } catch (e) { /* ignore */ }
-      const err = new Error(res.status === 429 ? 'The AI is at its usage limit right now (free keys have a daily cap).' : res.status === 401 || res.status === 403 || res.status === 400 && /key/i.test(detail) ? 'The AI key was not accepted. Check it in Settings.' : 'The AI service answered with an error (' + res.status + ').');
-      err.detail = detail;
-      throw err;
-    }
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': state.ai.key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+      body: JSON.stringify({ model: chosen || DEFAULT_MODEL.claude, max_tokens: 1024, system: sys, messages: turns.map((t) => ({ role: t.who === 'me' ? 'user' : 'assistant', content: t.text })) }),
+    });
+    if (!res.ok) throw await errorFrom(res);
     const data = await res.json();
-    if (provider === 'gemini') return (((data.candidates || [])[0] || {}).content || { parts: [] }).parts.map((p) => p.text || '').join('');
     return (data.content || []).filter((b) => b.type === 'text').map((b) => b.text).join('');
   }
 
@@ -195,7 +254,7 @@
         out.index = sys.index;
       } catch (e) {
         out = E.localBrain(text, state, MENU, now());
-        out.reply = (e.message || 'The AI could not be reached.') + ' Using my built-in brain for now. ' + out.reply;
+        out.reply = (e.message || 'The AI could not be reached.') + '\nUsing my built-in brain for now. ' + out.reply;
       }
       chat.pop();
     } else {
@@ -204,16 +263,23 @@
     const res = E.applyActions(state, out.actions, MENU, now(), out.index);
     save();
     const cardIds = res.plates.map((p) => registerCard({ locName: p.locName, title: p.title || p.locName, sub: p.title ? p.locName : '', plate: p.plate, shuffle: false }));
-    let rank = false;
+    // A recommendation goes on the big ticket instead of repeating it inside the chat.
+    let pickLine = '';
     if (res.recommend) {
       seed += 1;
-      const picks = pickCards(typeof res.recommend === 'string' ? res.recommend : null, 3);
-      if (picks.length) { rank = !cardIds.length; cardIds.push(...picks); } else out.reply = (out.reply ? out.reply + ' ' : '') + 'Everything I track is closed for the rest of today.';
+      pickLoc = typeof res.recommend === 'string' && MENU.locations.some((l) => l.id === res.recommend) ? res.recommend : null;
+    }
+    renderToday();
+    renderPlaces();
+    newPick();
+    if (res.recommend) {
+      const c = pickId && cards[pickId];
+      pickLine = c
+        ? '\n' + c.locName + ': ' + c.plate.items.map((i) => (i.servings !== 1 ? i.servings + ' x ' : '') + i.name).join(', ') + ' (' + c.plate.totals.cal + ' cal, ' + c.plate.totals.protein + 'g protein). It is on the ticket, with a shuffle button if you want something else.'
+        : '\nEverything I track is closed for the rest of today.';
     }
     const logged = (out.actions || []).some((a) => /^log_|undo/.test(a.type));
-    say('bot', (out.reply || (res.notes.length ? 'Done.' : 'Okay.')) + (logged ? '\n' + leftLine() : ''), { notes: res.notes, cards: cardIds, rank });
-    renderToday();
-    renderPick();
+    say('bot', (out.reply || (res.notes.length ? 'Done.' : 'Okay.')) + pickLine + (logged ? '\n' + leftLine() : ''), { notes: res.notes, cards: cardIds });
     busy = false;
     $('#send').disabled = false;
   }
@@ -240,10 +306,10 @@
       const rows = st.items.map((id) => ({ id, r: MENU.recipes[id] })).filter((x) => x.r && E.okForPrefs(x.r, state.prefs) && (!q || x.r.name.toLowerCase().includes(q) || st.name.toLowerCase().includes(q)));
       if (!rows.length) continue;
       shown += rows.length;
-      html += '<div class="station-name">' + esc(st.name) + '</div>' + rows.map((x) =>
+      html += '<details class="station"' + (q || meal.stations.length <= 4 ? ' open' : '') + '><summary>' + esc(st.name) + ' <span>' + rows.length + '</span></summary>' + rows.map((x) =>
         '<div class="item"><div><div class="n">' + esc(x.r.name) + '</div><div class="m">' + (x.r.serving ? esc(x.r.serving) + ' · ' : '') + x.r.cal + ' cal · ' + (x.r.protein || 0) + 'g protein · ' + (x.r.carbs || 0) + 'g carbs · ' + (x.r.fat || 0) + 'g fat' +
         (x.r.flag ? ' <span class="flag">(numbers look off on the dining site)</span>' : '') + (x.r.allergens ? '<br>Contains: ' + esc(x.r.allergens) : '') + '</div></div>' +
-        '<button class="small ghost" data-add="' + esc(x.id) + '" data-loc="' + esc(loc.name) + '" aria-label="Log ' + esc(x.r.name) + '">+ Ate</button></div>').join('');
+        '<button class="small" data-add="' + esc(x.id) + '" data-loc="' + esc(loc.name) + '" aria-label="Log ' + esc(x.r.name) + '">+ Ate</button></div>').join('') + '</details>';
     }
     $('#browse').innerHTML = shown ? html : '<p class="note">Nothing matches' + (q ? ' "' + esc(q) + '"' : '') + ' with your food preferences.</p>';
   }
@@ -273,22 +339,31 @@
   function renderHint() {
     $('#ai-hint').textContent = state.ai.key
       ? 'AI chat is on (' + (state.ai.provider === 'claude' ? 'Claude' : 'Gemini') + '). Type anything.'
-      : 'AI chat is off. Buttons and simple phrases work now. Add a free Gemini key in Settings to type anything.';
+      : 'AI chat is off. Buttons and simple phrases work now. Add a free Gemini key in settings to type anything.';
   }
-  function refreshAll() { renderBanner(); renderToday(); renderPick(); renderBrowse(); renderHint(); }
+  function refreshAll() { renderBanner(); renderToday(); renderPlaces(); renderPick(); renderBrowse(); renderHint(); }
 
   // ---------- events ----------
   document.addEventListener('click', (ev) => {
     const t = ev.target.closest('button');
     if (!t) return;
-    if (t.dataset.eat) {
+    if (t.dataset.place !== undefined) {
+      pickLoc = t.dataset.place && pickLoc !== t.dataset.place ? t.dataset.place : null;
+      renderPlaces();
+      newPick();
+    } else if (t.dataset.eat) {
       const c = cards[t.dataset.eat];
       if (!c || c.eaten) return;
       for (const i of c.plate.items) E.logFood(state, now(), MENU.recipes[i.id], i.servings, c.locName);
       c.eaten = true;
+      c.justEaten = true;
       save();
+      const fromChat = !!t.closest('#messages');
+      if (!fromChat) drawPick();
+      c.justEaten = fromChat;
       say('bot', 'Logged the ' + c.locName + ' plate: ' + c.plate.totals.cal + ' cal, ' + c.plate.totals.protein + 'g protein.\n' + leftLine());
-      renderToday(); renderPick();
+      renderToday();
+      if (fromChat) newPick();
     } else if (t.dataset.shuffle) {
       const c = cards[t.dataset.shuffle];
       if (!c) return;
@@ -300,8 +375,7 @@
         const p = E.buildPlate(MENU, am.meal, E.mealTarget(state, now()), state.prefs, { seed, avoidIds: lastMains, kind: loc.kind });
         if (p) c.plate = p;
       }
-      if ($('#pick').dataset.card === t.dataset.shuffle) $('#pick').querySelector('.plate').outerHTML = plateHTML(t.dataset.shuffle, { top: true });
-      renderChat();
+      if (t.dataset.shuffle === pickId) drawPick(); else renderChat();
     } else if (t.dataset.add) {
       const r = MENU.recipes[t.dataset.add];
       if (!r) return;
@@ -336,7 +410,7 @@
   $('#clear-day').addEventListener('click', () => { E.dayLog(state, now()).length = 0; save(); $('#settings').close(); refreshAll(); say('bot', "Cleared today's log."); });
 
   // ---------- start ----------
-  $('#subtitle').textContent = now().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) + ' · ' + MENU.locations.length + ' places on campus';
+  $('#subtitle').textContent = now().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
   fillBrowseSelects();
   refreshAll();
   say('bot', "Hey, I'm Deacon Plate. Tell me what you ate or what you did at the gym and I'll keep track. Or just ask where to eat.");

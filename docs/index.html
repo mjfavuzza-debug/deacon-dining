@@ -3,55 +3,68 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000000">
 <title>Deacon Plate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="top">
-  <div>
-    <h1>Deacon Plate</h1>
-    <p class="sub" id="subtitle">Where to eat at Wake, what to get, and how your day adds up.</p>
+<header class="mast">
+  <div class="mast-row">
+    <div class="brand">Deacon Plate</div>
+    <div class="mast-date" id="subtitle"></div>
+    <button class="quiet" id="open-settings">Goals and settings</button>
   </div>
-  <button class="ghost" id="open-settings" aria-label="Settings">Settings</button>
+  <section class="hero" id="today" aria-label="Today"></section>
 </header>
+
+<nav class="places" id="places" aria-label="Places on campus"></nav>
 
 <main>
   <div id="banner"></div>
 
-  <section class="card" id="today" aria-label="Today"></section>
+  <div class="cols">
+    <div class="col-main">
+      <section id="pick" aria-label="What to get right now"></section>
 
-  <section class="card" id="pick" aria-label="Top pick right now"></section>
+      <section class="panel" id="logged" aria-label="Logged today"></section>
 
-  <section class="card chat" aria-label="Chat">
-    <h2>Tell me anything</h2>
-    <div id="messages" class="messages" aria-live="polite"></div>
-    <div class="chips" id="chips">
-      <button data-say="Where should I eat?">Where should I eat?</button>
-      <button data-say="High protein plate">High protein</button>
-      <button data-say="Something lighter">Lighter</button>
-      <button data-fill="I ran 30 minutes">I worked out</button>
-      <button data-fill="I had the ">I ate...</button>
-      <button data-say="Undo">Undo last</button>
+      <section class="panel" aria-label="Browse menus">
+        <h2>Menus</h2>
+        <div class="browse-controls">
+          <select id="b-loc" aria-label="Place"></select>
+          <select id="b-meal" aria-label="Meal"></select>
+          <input id="b-search" type="search" placeholder="Search this menu" aria-label="Search">
+        </div>
+        <div id="browse"></div>
+      </section>
     </div>
-    <form id="chat-form" class="chat-form" autocomplete="off">
-      <input id="chat-input" type="text" placeholder='Try "had the chicken teriyaki at North" or "burned 350 lifting"' aria-label="Message">
-      <button type="submit" id="send">Send</button>
-    </form>
-    <p class="hint" id="ai-hint"></p>
-  </section>
 
-  <section class="card" aria-label="Browse menus">
-    <h2>Browse the menus</h2>
-    <div class="browse-controls">
-      <select id="b-loc" aria-label="Place"></select>
-      <select id="b-meal" aria-label="Meal"></select>
-      <input id="b-search" type="search" placeholder="Search this menu" aria-label="Search">
-    </div>
-    <div id="browse"></div>
-  </section>
+    <aside class="col-chat">
+      <section class="panel chat" aria-label="Chat">
+        <h2>Tell me what you ate or did</h2>
+        <div id="messages" class="messages" aria-live="polite"></div>
+        <div class="chips" id="chips">
+          <button data-say="Where should I eat?">Where should I eat?</button>
+          <button data-say="High protein plate">High protein</button>
+          <button data-say="Something lighter">Lighter</button>
+          <button data-fill="I ran 30 minutes">I worked out</button>
+          <button data-fill="I had the ">I ate...</button>
+          <button data-say="Undo">Undo last</button>
+        </div>
+        <form id="chat-form" class="chat-form" autocomplete="off">
+          <input id="chat-input" type="text" placeholder="had the chicken teriyaki at North" aria-label="Message">
+          <button type="submit" id="send">Send</button>
+        </form>
+        <p class="hint" id="ai-hint"></p>
+      </section>
+    </aside>
+  </div>
 
   <footer>
-    <p>Menu and nutrition numbers come from <a href="https://dining.wfu.edu" target="_blank" rel="noopener">dining.wfu.edu</a> and are only as accurate as that site. Chick-fil-A numbers come from the chain's own nutrition page. This is a class project, not medical or nutrition advice. For allergies, always check with dining staff.</p>
+    <p>Menus and nutrition come from <a href="https://dining.wfu.edu" target="_blank" rel="noopener">dining.wfu.edu</a> and are only as accurate as that site. Chick-fil-A numbers come from the chain's own nutrition page. This is a class project, not medical or nutrition advice. For allergies, check with dining staff.</p>
   </footer>
 </main>
 
@@ -91,9 +104,9 @@
       <label>Model (leave blank for the default) <input type="text" id="ai-model" autocomplete="off"></label>
     </fieldset>
     <div class="row">
-      <button type="button" class="ghost" id="clear-day">Clear today's log</button>
+      <button type="button" class="quiet dark" id="clear-day">Clear today's log</button>
       <span class="spacer"></span>
-      <button type="button" class="ghost" id="cancel-settings">Cancel</button>
+      <button type="button" class="quiet dark" id="cancel-settings">Cancel</button>
       <button type="submit" id="save-settings">Save</button>
     </div>
   </form>

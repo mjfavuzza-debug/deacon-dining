@@ -2,7 +2,7 @@
 const assert = require('assert');
 const E = require('../docs/engine.js');
 const { parseMenu } = require('../scraper/parse.js');
-const menu = JSON.parse(require('fs').readFileSync(__dirname + '/../docs/menu.json', 'utf8'));
+const menu = JSON.parse(require('fs').readFileSync(__dirname + '/fixture-menu.json', 'utf8'));
 let passed = 0;
 function test(name, fn) { fn(); passed += 1; console.log('ok  ' + name); }
 const at = (h, m, day) => { const d = new Date(2026, 10, 16 + (day || 0), h, m || 0); return d; }; // Nov 16, 2026 is a Monday
@@ -29,7 +29,8 @@ test('hours and day ranges', () => {
 test('knows what is open at 6 pm Monday and what is not on Saturday', () => {
   const pit = menu.locations.find((l) => l.id === 'pit');
   assert.strictEqual(E.activeMeal(pit, at(18)).status, 'open');
-  assert.strictEqual(E.activeMeal(pit, at(10)).status, 'later');
+  assert.strictEqual(E.activeMeal(pit, at(6)).status, 'later');
+  assert.strictEqual(E.activeMeal(pit, at(12)).meal.name, 'Lunch');
   assert.strictEqual(E.activeMeal(pit, at(22)), null);
   const shortys = menu.locations.find((l) => l.id === 'shortys');
   assert.strictEqual(E.activeMeal(shortys, at(18)).status, 'open');
@@ -52,9 +53,10 @@ test('builds a plate near the target and ranks every open place', () => {
 test('shuffle gives a different main', () => {
   const s = E.newState();
   const pit = menu.locations.find((l) => l.id === 'pit');
+  const dinner = pit.meals.find((m) => m.name === 'Dinner');
   const t = E.mealTarget(s, at(18));
-  const a = E.buildPlate(menu, pit.meals[0], t, s.prefs, { seed: 1, kind: 'hall' });
-  const b = E.buildPlate(menu, pit.meals[0], t, s.prefs, { seed: 2, kind: 'hall', avoidIds: a.items.map((i) => i.id) });
+  const a = E.buildPlate(menu, dinner, t, s.prefs, { seed: 1, kind: 'hall' });
+  const b = E.buildPlate(menu, dinner, t, s.prefs, { seed: 2, kind: 'hall', avoidIds: a.items.map((i) => i.id) });
   assert.notStrictEqual(a.items[0].id, b.items[0].id);
 });
 
@@ -116,6 +118,18 @@ test('near the calorie goal the plate gets lighter, never tiny', () => {
   const t = E.mealTarget(s, now);
   assert.strictEqual(t.cal, 350);
   assert.ok(t.note.length > 0);
+});
+
+test('place status lines and the week summary', () => {
+  const pit = menu.locations.find((l) => l.id === 'pit');
+  assert.deepStrictEqual(E.placeStatus(pit, at(18)), { state: 'open', text: 'Dinner until 9pm' });
+  assert.deepStrictEqual(E.placeStatus(pit, at(6)), { state: 'later', text: 'Breakfast at 7am' });
+  assert.strictEqual(E.placeStatus(pit, at(22)).state, 'closed');
+  const s = E.newState();
+  E.logFood(s, at(18), { name: 'x', cal: 500, protein: 60, carbs: 1, fat: 1 }, 1, '');
+  const w = E.weekSummary(s, at(18));
+  assert.strictEqual(w.length, 7);
+  assert.deepStrictEqual([w[6].logged, w[6].proteinHit, w[5].logged], [true, true, false]);
 });
 
 console.log('\n' + passed + ' tests passed');
